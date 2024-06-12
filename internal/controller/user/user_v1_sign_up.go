@@ -4,7 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/gogf/gf-demo-user/v2/api/user/v1"
+	"github.com/gogf/gf-demo-user/v2/internal/consts"
 	"github.com/gogf/gf-demo-user/v2/internal/dao"
+	"github.com/gogf/gf-demo-user/v2/internal/model"
+	"github.com/gogf/gf-demo-user/v2/internal/service"
 	"github.com/gogf/gf-demo-user/v2/internal/utils/verification"
 	"github.com/gogf/gf/v2/errors/gerror"
 )
@@ -27,6 +30,12 @@ func (c *ControllerV1) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.S
 	fmt.Println("验证码：", code)
 	fmt.Println(req.Passport)
 	//发送验证邮件
-	//err = email.SendMail("邮箱验证码", "您的验证码为：\n"+code, req.Passport)
+	err = service.Email().SendEmail(ctx, model.EmailSendInput{
+		From:     consts.From,
+		Password: consts.Password,
+		To:       req.Passport,
+		Subject:  "邮箱验证码",
+		Body:     "您的验证码为：\n" + code,
+	})
 	return
 }
