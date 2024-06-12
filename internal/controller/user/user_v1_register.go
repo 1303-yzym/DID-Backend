@@ -32,6 +32,10 @@ func (c *ControllerV1) Register(ctx context.Context, req *v1.RegisterReq) (res *
 		})
 	} else {
 		err = gerror.New("验证码错误")
+		return
+	}
+	res = &v1.RegisterRes{
+		OK: true,
 	}
 	return
 }

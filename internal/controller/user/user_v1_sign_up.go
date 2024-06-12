@@ -37,5 +37,11 @@ func (c *ControllerV1) SignUp(ctx context.Context, req *v1.SignUpReq) (res *v1.S
 		Subject:  "邮箱验证码",
 		Body:     "您的验证码为：\n" + code,
 	})
+	if err != nil {
+		return
+	}
+	res = &v1.SignUpRes{
+		OK: true,
+	}
 	return
 }

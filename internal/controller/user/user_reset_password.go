@@ -36,8 +36,12 @@ func (c *ControllerV1) ResetPassword(ctx context.Context, req *v1.ResetPasswordR
 		Subject:  "重置密码验证",
 		Body:     "您的验证码为：\n" + code,
 	})
-	// email.SendMail("重置密码验证码", "您的验证码是：\n"+code, req.Passport)
-	// 不存在则返回错误
+	if err != nil {
+		return
+	}
+	res = &v1.ResetPasswordRes{
+		OK: true,
+	}
 	return
 
 }
