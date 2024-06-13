@@ -25,4 +25,5 @@ type IUserV1 interface {
 	ResetPassword(cxt context.Context, req *v1.ResetPasswordReq) (res *v1.ResetPasswordRes, err error)
 	SendShare(cxt context.Context, req *v1.SendShareReq) (res *v1.SendShareRes, err error)
 	SocialRecovery(cxt context.Context, req *v1.SocialRecoveryReq) (res *v1.SocialRecoveryRes, err error)
+	ResetRegister(cxt context.Context, req *v1.ResetRegisterReq) (res *v1.ResetRegisterRes, err error)
 }
